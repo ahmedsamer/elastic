@@ -4,35 +4,35 @@
 ## Install JAVA
 
 ```bash
- yum install java-1.8.0-openjdk
+ sudo yum install java-1.8.0-openjdk
 ```
 
 ## Install ElasticSearch
 
 ```bash
- rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
- rpm -i https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.3.rpm
+ sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+ sudo rpm -i https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.3.rpm
 ```
 
 ### Enable elasticSearch
 
 ```bash
- systemctl daemon-reload
- systemctl enable elasticsearch
- systemctl start elasticsearch
+ sudo systemctl daemon-reload
+ sudo systemctl enable elasticsearch
+ sudo systemctl start elasticsearch
 ```
 
 ## Install Kibana
 
 ```bash
- rpm -i https://artifacts.elastic.co/downloads/kibana/kibana-6.2.3-x86_64.rpm
+ sudo rpm -i https://artifacts.elastic.co/downloads/kibana/kibana-6.2.3-x86_64.rpm
 ```
 
 ### Enable Kibana
 
 ```bash
- systemctl enable kibana
- systemctl start kibana
+ sudo systemctl enable kibana
+ sudo systemctl start kibana
 ```
 
 
@@ -40,19 +40,20 @@
 ## Install FileBeat
 
 ```bash
- rpm -i https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.3-x86_64.rpm
- vim /etc/filebeat/modules.d/system.yml.disabled 
- filebeat modules enable system
- /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-geoip
+ sudo rpm -i https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.3-x86_64.rpm
+ sudo vim /etc/filebeat/modules.d/system.yml.disabled
+ sudo mv /etc/filebeat/modules.d/system.yml.disabled /etc/filebeat/modules.d/system.yml
+ sudo filebeat modules enable system
+ sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install ingest-geoip
 ```
 
 ```bash
- systemctl restart elasticsearch
+ sudo systemctl restart elasticsearch
 ```
 
 ### Enable Kibana
 ```bash
-filebeat setup
-systemctl enable filebeat
-systemctl start filebeat
+sudo filebeat setup
+sudo systemctl enable filebeat
+sudo systemctl start filebeat
 ```
